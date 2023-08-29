@@ -9,7 +9,7 @@ from app.config import config
 
 
 class Image(BaseModel):
-    file_stem: str
+    image_id: str
 
 
 @router.get(
@@ -18,6 +18,6 @@ class Image(BaseModel):
 )
 async def list_images():
     return [
-        Image(file_stem=image_path.stem)
+        Image(image_id=image_path.stem)
         for image_path in Path(config.images_dir).glob("*.jpg")
     ]

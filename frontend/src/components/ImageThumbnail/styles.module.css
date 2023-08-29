@@ -1,0 +1,37 @@
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 20px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.selected {
+  background-color: blue;
+  color: white;
+}
+
+.placeholder {
+  width: 100px;
+  height: 67px;
+  background: #eee;
+}
+
+.thumbnail {
+  width: 100px;
+  height: 67px;
+}
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  padding: 4px;
+  text-align: center;
+}

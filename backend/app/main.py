@@ -7,7 +7,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import RedirectResponse
 
 from app.endpoints import health
-from app.endpoints.images import get_image, list_images
+from app.endpoints.images import (
+    get_image,
+    get_thumbnail,
+    list_images,
+    list_comments_for_image,
+    create_comment,
+    update_comment,
+)
 
 from .database.comment import Comment
 from .database.database import engine
@@ -29,6 +36,7 @@ api.add_middleware(
 
 async def init_models():
     async with engine.begin() as conn:
+        # await conn.run_sync(Comment.metadata.drop_all)
         await conn.run_sync(Comment.metadata.create_all)
 
 
@@ -45,6 +53,10 @@ def redirect_to_docs():
 api.include_router(health.router)
 api.include_router(list_images.router)
 api.include_router(get_image.router)
+api.include_router(get_thumbnail.router)
+api.include_router(list_comments_for_image.router)
+api.include_router(create_comment.router)
+api.include_router(update_comment.router)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
